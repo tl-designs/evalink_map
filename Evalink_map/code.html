@@ -21,7 +21,7 @@
       });
 
       const source = new ol.source.TileJSON({
-        url: `https://api.maptiler.com/maps/streets-v2/tiles.json?key=${key}`, // source URL
+        url: `https://api.maptiler.com/maps/topo/tiles.json?key=${key}`, // source URL
         tileSize: 512,
         crossOrigin: 'anonymous'
       });
@@ -36,15 +36,16 @@
         target: 'map',
         view: new ol.View({
           constrainResolution: true,
-          center: ol.proj.fromLonLat([-111.876183, 40.758701]), // starting position [lng, lat]
-          zoom: 5 // starting zoom
+          center: ol.proj.fromLonLat([-110.7919148, 38.4065268]), // starting position [lng, lat]
+          zoom: 13 // starting zoom
         })
       });
+      const AirportSource = new ol.source.Vector({
+          url: 'http://evalink01.westus3.cloudapp.azure.com/57f451ba-95c0-4d17-9c0f-22670042f212/features.json',
+          format: new ol.format.GeoJSON(),
+      })
       const AirportLayer = new ol.layer.Vector({
-          source: new ol.source.Vector({
-              url: `https://api.maptiler.com/data/d4405b3d-9601-462d-ba9a-b15c830d65be/features.json?key=VfcvzosbIEMkLMsjWMpz`,
-              format: new ol.format.GeoJSON(),
-          }),
+          source: AirportSource,
           style: new ol.style.Style({
               image: new ol.style.Icon({
                   src: 'https://docs.maptiler.com/openlayers/geojson-points/icon-plane-512.png',
@@ -54,6 +55,11 @@
           })
       });
       map.addLayer(AirportLayer);
+      AirportLayer.reload = () => {
+          AirportSource.clear();
+          AirportSource.refresh({force: true});
+      };
+      setInterval(AirportLayer.reload, 9000);
     </script>
   </body>
 </html>
