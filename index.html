@@ -367,11 +367,13 @@
             });
 
             if (feature) {
+                var dateTime = new Date(feature.values_.time);
+                var formattedDate = dateTime.toLocaleString('en-us', { year:"numeric", month:"numeric", day:"numeric", hour: "numeric", minute: "numeric"})
                 const coordinates = feature.getGeometry().getCoordinates();
                 const content = `<div class="popup">
                                     <span><b>Name: </b>${feature.values_.name}</span></br>
                                     <span><b>Label: </b>${feature.values_.label}</span></br>
-                                    <span><b>Time: </b>${feature.values_.time}</span></br>
+                                    <span><b>Time: </b>${formattedDate}</span></br>
                                     <span><b>Hardware: </b>${feature.values_.hardware}</span></br>
                                     <span><b>Node Type: </b>${feature.values_.node_type}</span>
                                 </div>`;
