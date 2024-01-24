@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home</title>
+  </head>
+  <body>
+
+    
+    <div style="text-align: center;">  
+      <h1>Home</h1>
+    <img src="/images/tmslogo_trans_1000.png" alt="The Mars Society Logo" width="200">
+    
+    
+    <% if (typeof message !== 'undefined' ) { %>
+    <p><%= message %></p>
+    <% } %>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="/users/login"><button>Login</button></a>
+    <a href="http://evalink01.westus3.cloudapp.azure.com/57f451ba-95c0-4d17-9c0f-22670042f212/"><button>Dashboard</button></a>
+  </div>
+
+  </body>
+</html>
